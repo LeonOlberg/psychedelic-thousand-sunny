@@ -1,0 +1,15 @@
+services:
+  postgres:
+    container_name: psychedelic-thousand-sunny-postgres
+    hostname: localhost
+    image: postgres:14.4
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 'psychedelic-thousand-sunny'
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql
+
+volumes:
+  postgres:
