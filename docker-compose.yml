@@ -2,7 +2,7 @@ services:
   postgres:
     container_name: psychedelic-thousand-sunny-postgres
     hostname: localhost
-    image: postgres:14.4
+    image: postgres:14.4-alpine
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 'psychedelic-thousand-sunny'
