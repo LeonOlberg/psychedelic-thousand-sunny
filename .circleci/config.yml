@@ -14,9 +14,9 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - ruby/rubocop-check:
-          format: progress
-          label: Inspecting with Rubocop
+      - run:
+          command: 'bundle exec rubocop'
+          name: Inspecting with Rubocop
   test:
     docker:
       - image: 'cimg/ruby:3.1.2'
