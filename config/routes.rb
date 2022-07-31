@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get 'referral', to: 'referral#index'
+  get 'referral', to: 'referral#show'
+  get 'referral', to: 'referral#create'
+  get 'referral', to: 'referral#destroy'
 end

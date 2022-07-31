@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+contact = Contact.create(name: 'João', email: 'joao@me.com', address: 'Av paulista 193 São Paulo Sp')
+Referral.create(name: 'Rafael', email: 'rafael@me.com', contact: contact)
