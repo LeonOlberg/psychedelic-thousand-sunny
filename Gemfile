@@ -40,6 +40,7 @@ gem "bootsnap", require: false
 group :development, :test do
   gem 'brakeman', '~> 5.2', '>= 5.2.3'
   gem 'rubocop', '~> 1.32', require: false
+  gem "rubocop-discourse"
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
