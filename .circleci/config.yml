@@ -15,7 +15,7 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
-          command: 'bundle exec rubocop'
+          command: 'bundle exec rubocop --parallel --config .rubocop.yml'
           name: Inspecting with Rubocop
   test:
     docker:
