@@ -1,21 +1,14 @@
 class ReferralController < ApplicationController
-  def index
-    referrals = Referral.includes(:contact)
-    referral_with_contact = referrals.map do |referral|
-      {
-        :id => referral.id,
-        :name => referral.name,
-        :email => referral.email,
-        :contact =>
-        { :name => referral.contact.name,
-          :email => referral.contact.email
-        },
-        :created_at => referral.created_at,
-    		:updated_at => referral.updated_at
-      }
-    end.flatten
+  include Pagination
 
-    render json: referral_with_contact
+  def index
+    referrals = Referral.all
+
+    referrals = referrals.limit(per_page).offset(paginate_offset) if params[:page_num] or params[:per_page]
+
+    referrals.includes(:contact)
+
+    render json: referrals.to_json(include: { contact: { only: [ :name, :email ] }})
   end
 
   def show
