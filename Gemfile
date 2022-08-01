@@ -39,6 +39,8 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem 'brakeman', '~> 5.2', '>= 5.2.3'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'faker', '~> 2.22'
   gem 'rubocop', '~> 1.32', require: false
   gem "rubocop-discourse"
   gem 'rubocop-rails', require: false
