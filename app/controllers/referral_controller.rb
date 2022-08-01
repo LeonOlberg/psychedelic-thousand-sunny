@@ -37,5 +37,8 @@ class ReferralController < ApplicationController
   end
 
   def destroy
+    Referral.destroy(params[:id])
+
+    render status: 200
   end
 end
