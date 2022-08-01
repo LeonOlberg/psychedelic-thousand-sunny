@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Event.destroy_all
+Referral.destroy_all
 Contact.destroy_all
 
 joao_contact = Contact.create(name: 'João', email: 'joao@me.com', address: 'Av paulista 193 São Paulo Sp')
