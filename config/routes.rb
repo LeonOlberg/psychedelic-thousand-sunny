@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get 'referral', to: 'referral#index'
-  get 'referral', to: 'referral#show'
-  get 'referral', to: 'referral#create'
-  get 'referral', to: 'referral#destroy'
+  get 'referral/:id', to: 'referral#show'
+  post 'referral', to: 'referral#create'
+  delete 'referral', to: 'referral#destroy'
 end

@@ -13,6 +13,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/{rails,rake,bundle,setup}'
     - !ruby/regexp /old_and_unused\.rb$/
+    - 'spec/**/*'
 
 # Offense count: 11
 # This cop supports safe autocorrection (--autocorrect).
