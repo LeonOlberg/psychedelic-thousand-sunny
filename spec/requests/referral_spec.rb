@@ -43,6 +43,17 @@ RSpec.describe "Referrals", type: :request do
         end
       end
 
+      describe "when an contact_id is passed as param to search" do
+        it "returns only referrals that matchers with param name" do
+          expected_result = create_list(:referral, 1)
+
+          get "/referral", :params => { :contact_id => expected_result[0].contact_id }
+
+          expect(response.body).to eq expected_result.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
+          expect(response).to have_http_status(:success)
+        end
+      end
+
       describe "when an order config is passed as param to search" do
         describe "when an order specification is not passed as param to search" do
           it "returns all referrals ordered as param" do

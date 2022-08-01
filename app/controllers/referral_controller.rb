@@ -8,6 +8,7 @@ class ReferralController < ApplicationController
 
     referrals = referrals.where(name: params[:name]) unless params[:name].blank?
     referrals = referrals.where(email: params[:email]) unless params[:email].blank?
+    referrals = referrals.where(contact_id: params[:contact_id]) unless params[:contact_id].blank?
 
     if !params[:order].blank?
       if !params[:specify_order].blank? && ['ASC', 'DESC'].include?(params[:specify_order]&.upcase)
@@ -21,7 +22,11 @@ class ReferralController < ApplicationController
 
     referrals.includes(:contact)
 
-    render json: referrals.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
+    if referrals.any?
+      render json: referrals.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
+    else
+      render status: 404
+    end
   end
 
   def show

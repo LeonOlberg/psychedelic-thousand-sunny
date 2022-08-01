@@ -22,7 +22,11 @@ class ContactController < ApplicationController
 
     contacts.includes(:contact)
 
-    render json: contacts.to_json
+    if contacts.any?
+      render json: contacts.to_json
+    else
+      render status: 404
+    end
   end
 
   def show
