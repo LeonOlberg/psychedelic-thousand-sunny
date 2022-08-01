@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   get 'referral/:id', to: 'referral#show'
   post 'referral', to: 'referral#create'
   delete 'referral/:id', to: 'referral#destroy'
+
+  get 'contact', to: 'contact#index'
+  get 'contact/:id', to: 'contact#show'
+  post 'contact', to: 'contact#create'
+  delete 'contact/:id', to: 'contact#destroy'
 end
