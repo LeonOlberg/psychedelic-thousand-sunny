@@ -21,11 +21,4 @@ RSpec.describe Referral, type: :model do
 
     expect(expected_result).to_not be_valid
   end
-
-  xit "is not valid when address is not present" do
-    example = build(:referral)
-
-    expect { Referral.new(name: example.name, email: example.email, contact_id: nil) }.to raise_exception(ActiveRecord::RecordNotFound)
-    expect(expected_result).to_not be_valid
-  end
 end
