@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-  linter:
+  rubocop:
     docker:
     - image: 'cimg/ruby:3.1.2'
     steps:
@@ -23,6 +23,15 @@ jobs:
       - run:
           command: 'bundle exec rubocop --parallel --config .rubocop.yml'
           name: Inspecting with Rubocop
+  brakeman:
+    docker:
+    - image: 'cimg/ruby:3.1.2'
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          command: 'bundle exec brakeman'
+          name: Inspecting with Brakeman
   test:
     docker:
       - image: 'cimg/ruby:3.1.2'
@@ -56,9 +65,12 @@ workflows:
     jobs:
       - build
       - checking
-      - linter:
+      - rubocop:
           requires:
             - checking
-      - test:
+      - brakeman:
+          requires:
+            - checking
+      - rspec:
           requires:
             - build
