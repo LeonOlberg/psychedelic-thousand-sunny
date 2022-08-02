@@ -18,6 +18,8 @@ jobs:
     docker:
     - image: 'cimg/ruby:3.1.2'
     steps:
+      - checkout
+      - ruby/install-deps
       - run:
           command: 'bundle exec rubocop --parallel --config .rubocop.yml'
           name: Inspecting with Rubocop
@@ -53,10 +55,10 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - checking:
+      - checking
       - linter:
           requires:
-            - build
+            - checking
       - test:
           requires:
             - build
