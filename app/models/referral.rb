@@ -20,10 +20,10 @@ class Referral < ApplicationRecord
 
   def wellcome_mail_event_waiting_to_be_sent
     ReferralMailer.welcome(referral_id: id, referral_email: email).deliver_later
-    Event.create(kind: :referral_email_waiting_to_be_sent, reference: { 'referral_id' => id } )
+    Event.create(kind: :referral_email_waiting_to_be_sent, reference: { 'referral_id' => id })
   end
 
   def referral_deleted_event
-    Event.create(kind: :referral_deleted, reference: { 'referral_id' => id } )
+    Event.create(kind: :referral_deleted, reference: { 'referral_id' => id })
   end
 end
