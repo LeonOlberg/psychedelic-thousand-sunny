@@ -60,7 +60,7 @@ jobs:
           name: Database setup
       - run:
           command: 'bundle exec rspec'
-          name: Database setup
+          name: Run tests with rspec
 workflows:
   build_and_test:
     jobs:
