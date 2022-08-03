@@ -48,7 +48,7 @@ RSpec.describe "Contacts", type: :request do
           it "returns all contacts ordered as param" do
             expected_result = create_list(:contact, 5).sort_by(&:name)
 
-            get "/contact", :params => { :order => 'name' }
+            get "/contact", :params => { :order_by => 'name' }
 
             expect(response.body).to eq expected_result.to_json
             expect(response).to have_http_status(:success)
@@ -59,7 +59,7 @@ RSpec.describe "Contacts", type: :request do
           it "returns all contacts ordered as param" do
             expected_result = create_list(:contact, 5).sort_by(&:name).reverse
 
-            get "/contact", :params => { :order => 'name' , :specify_order => 'desc'}
+            get "/contact", :params => { :order_by => 'name' , :specify_order => 'desc'}
 
             expect(response.body).to eq expected_result.to_json
             expect(response).to have_http_status(:success)
@@ -110,7 +110,7 @@ RSpec.describe "Contacts", type: :request do
           all_contacts = create_list(:contact, 5).sort_by(&:name).reverse
           expected_result = [all_contacts[2], all_contacts[3]]
 
-          get "/contact", :params => { :order => 'name', :specify_order => 'desc' , :page_num =>2, :per_page => 2 }
+          get "/contact", :params => { :order_by => 'name', :specify_order => 'desc' , :page_num =>2, :per_page => 2 }
 
           expect(response.body).to eq expected_result.to_json
           expect(response).to have_http_status(:success)

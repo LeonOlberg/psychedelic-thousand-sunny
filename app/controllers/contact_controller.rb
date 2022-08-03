@@ -10,11 +10,11 @@ class ContactController < ApplicationController
     contacts = contacts.where(email: params[:email]) unless params[:email].blank?
     contacts = contacts.where(address: params[:address]) unless params[:address].blank?
 
-    if !params[:order].blank?
+    if !params[:order_by].blank?
       if !params[:specify_order].blank? && ['ASC', 'DESC'].include?(params[:specify_order]&.upcase)
-        contacts = contacts.order(params[:order] + ' ' + params[:specify_order])
+        contacts = contacts.order(params[:order_by] + ' ' + params[:specify_order])
       else
-        contacts = contacts.order(params[:order])
+        contacts = contacts.order(params[:order_by])
       end
     end
 

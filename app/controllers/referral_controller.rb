@@ -10,11 +10,11 @@ class ReferralController < ApplicationController
     referrals = referrals.where(email: params[:email]) unless params[:email].blank?
     referrals = referrals.where(contact_id: params[:contact_id]) unless params[:contact_id].blank?
 
-    if !params[:order].blank?
+    if !params[:order_by].blank?
       if !params[:specify_order].blank? && ['ASC', 'DESC'].include?(params[:specify_order]&.upcase)
-        referrals = referrals.order(params[:order] + ' ' + params[:specify_order])
+        referrals = referrals.order(params[:order_by] + ' ' + params[:specify_order])
       else
-        referrals = referrals.order(params[:order])
+        referrals = referrals.order(params[:order_by])
       end
     end
 

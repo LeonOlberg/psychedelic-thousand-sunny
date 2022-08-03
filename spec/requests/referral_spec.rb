@@ -59,7 +59,7 @@ RSpec.describe "Referrals", type: :request do
           it "returns all referrals ordered as param" do
             expected_result = create_list(:referral, 5).sort_by(&:name)
 
-            get "/referral", :params => { :order => 'name' }
+            get "/referral", :params => { :order_by => 'name' }
 
             expect(response.body).to eq expected_result.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
             expect(response).to have_http_status(:success)
@@ -70,7 +70,7 @@ RSpec.describe "Referrals", type: :request do
           it "returns all referrals ordered as param" do
             expected_result = create_list(:referral, 5).sort_by(&:name).reverse
 
-            get "/referral", :params => { :order => 'name' , :specify_order => 'desc'}
+            get "/referral", :params => { :order_by => 'name' , :specify_order => 'desc'}
 
             expect(response.body).to eq expected_result.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
             expect(response).to have_http_status(:success)
@@ -121,7 +121,7 @@ RSpec.describe "Referrals", type: :request do
           all_referrals = create_list(:referral, 5).sort_by(&:name).reverse
           expected_result = [all_referrals[2], all_referrals[3]]
 
-          get "/referral", :params => { :order => 'name', :specify_order => 'desc' , :page_num =>2, :per_page => 2 }
+          get "/referral", :params => { :order_by => 'name', :specify_order => 'desc' , :page_num =>2, :per_page => 2 }
 
           expect(response.body).to eq expected_result.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
           expect(response).to have_http_status(:success)
