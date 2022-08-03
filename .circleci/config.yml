@@ -36,8 +36,8 @@ jobs:
     docker:
       - image: 'cimg/ruby:3.1.2'
       - environment:
-          POSTGRES_DB: psychedelic_thousand_sunny_test
-          POSTGRES_PASSWORD: psychedelic-thousand-sunny
+          POSTGRES_DB: referable_rails_test
+          POSTGRES_PASSWORD: referable-rails
           POSTGRES_HOST: 'localhost'
           POSTGRES_USER: root
         image: 'postgres:14.4-alpine'
@@ -45,7 +45,7 @@ jobs:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
       PGHOST: localhost
-      PGPASSWORD: psychedelic-thousand-sunny
+      PGPASSWORD: referable-rails
       PGUSER: root
       RAILS_ENV: test
     parallelism: 3

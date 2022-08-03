@@ -1,18 +1,18 @@
 services:
   postgres:
-    container_name: psychedelic-thousand-sunny-postgres
+    container_name: referable-rails-postgres
     hostname: localhost
     image: postgres:14.4-alpine
     environment:
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: 'psychedelic-thousand-sunny'
+      POSTGRES_PASSWORD: 'referable-rails'
     ports:
       - '5432:5432'
     volumes:
       - postgres:/var/lib/postgresql
 
   redis:
-    container_name: psychedelic-thousand-sunny-redis
+    container_name: referable-rails-redis
     image: redis:7.0.4-alpine
     command: redis-server
     hostname: localhost
