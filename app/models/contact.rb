@@ -10,10 +10,10 @@ class Contact < ApplicationRecord
   private
 
   def contact_created_event
-    Event.create(kind: :contact_created, reference: { 'contact_id' => id })
+    Event.create!(kind: :contact_created, reference: { 'contact_id' => id })
   end
 
   def contact_deleted_event
-    Event.create(kind: :contact_deleted, reference: { 'contact_id' => id })
+    Event.create!(kind: :contact_deleted, reference: { 'contact_id' => id })
   end
 end
