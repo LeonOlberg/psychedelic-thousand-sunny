@@ -7,6 +7,12 @@ RSpec.describe "Referrals", type: :request do
     Contact.destroy_all
   end
 
+  after :each do
+    Event.destroy_all
+    Referral.destroy_all
+    Contact.destroy_all
+  end
+
   context "GET /index" do
     context "when no param is passed" do
       it "returns a list of all referrals with contact" do
@@ -17,6 +23,19 @@ RSpec.describe "Referrals", type: :request do
 
         expect(response.body).to eq expected_result
         expect(response).to have_http_status(:success)
+      end
+
+      context "when there is no referral in db" do
+        it "returns an empty array" do
+          Referral.destroy_all
+
+          expected_result = [].to_json
+
+          get "/referral"
+
+          expect(response.body).to eq expected_result
+          expect(response).to have_http_status(:success)
+        end
       end
     end
 
