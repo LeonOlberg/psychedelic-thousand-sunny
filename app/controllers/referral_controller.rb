@@ -6,9 +6,7 @@ class ReferralController < ApplicationController
   def index
     referrals = Referral.all
 
-    referrals = referrals.where(name: params[:name]) unless params[:name].blank?
-    referrals = referrals.where(email: params[:email]) unless params[:email].blank?
-    referrals = referrals.where(contact_id: params[:contact_id]) unless params[:contact_id].blank?
+    referrals.where(params.permit(:name, :email, :contact_id))
 
     if !params[:order_by].blank?
       if !params[:specify_order].blank? && ['ASC', 'DESC'].include?(params[:specify_order]&.upcase)

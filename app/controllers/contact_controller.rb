@@ -6,9 +6,7 @@ class ContactController < ApplicationController
   def index
     contacts = Contact.all
 
-    contacts = contacts.where(name: params[:name]) unless params[:name].blank?
-    contacts = contacts.where(email: params[:email]) unless params[:email].blank?
-    contacts = contacts.where(address: params[:address]) unless params[:address].blank?
+    contacts.where(params.permit(:name, :email, :address))
 
     if !params[:order_by].blank?
       if !params[:specify_order].blank? && ['ASC', 'DESC'].include?(params[:specify_order]&.upcase)
