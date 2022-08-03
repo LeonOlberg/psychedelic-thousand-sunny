@@ -18,8 +18,6 @@ class ContactController < ApplicationController
 
     contacts = contacts.limit(per_page).offset(paginate_offset) if params[:page_num] || params[:per_page]
 
-    contacts.includes(:contact)
-
     if contacts.any?
       render json: contacts.to_json
     else
