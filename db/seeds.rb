@@ -6,12 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+require 'faker'
+
 Event.destroy_all
 Referral.destroy_all
 Contact.destroy_all
 
-joao_contact = Contact.create(name: 'João', email: 'joao@me.com', address: 'Av paulista 193 São Paulo Sp')
-pedro_contact = Contact.create(name: 'Pedro', email: 'pedro@me.com', address: 'Av brasil 23423 Rio de Janeiro Rj')
-Referral.create(name: 'Rafael', email: 'rafael@me.com', contact: joao_contact)
-Referral.create(name: 'Joana', email: 'joana@me.com', contact: pedro_contact)
-Referral.create(name: 'Daniela', email: 'daniela@me.com', contact: pedro_contact)
+first_contact = Contact.create(name: Faker::Name.name, email: Faker::Internet.email, address: Faker::Address.full_address)
+second_contact = Contact.create(name: Faker::Name.name, email: Faker::Internet.email, address: Faker::Address.full_address)
+Referral.create(name: Faker::Name.name, email: Faker::Internet.email, contact: first_contact)
+Referral.create(name: Faker::Name.name, email: Faker::Internet.email, contact: second_contact)
+Referral.create(name: Faker::Name.name, email: Faker::Internet.email, contact: second_contact)
