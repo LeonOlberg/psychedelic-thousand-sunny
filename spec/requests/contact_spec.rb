@@ -7,8 +7,8 @@ RSpec.describe "Contacts", type: :request do
     Contact.destroy_all
   end
 
-  describe "GET /index" do
-    describe "when no param is passed" do
+  context "GET /index" do
+    context "when no param is passed" do
       it "returns a list of all contacts with referral" do
         create_list(:contact, 5)
         expected_result = Contact.all.to_json
@@ -20,8 +20,8 @@ RSpec.describe "Contacts", type: :request do
       end
     end
 
-    describe "when a param is passed" do
-      describe "when a name is passed as param to search" do
+    context "when a param is passed" do
+      context "when a name is passed as param to search" do
         it "returns only contacts that matchers with param name" do
           expected_result = create_list(:contact, 1)
 
@@ -32,7 +32,7 @@ RSpec.describe "Contacts", type: :request do
         end
       end
 
-      describe "when an email is passed as param to search" do
+      context "when an email is passed as param to search" do
         it "returns only contacts that matchers with param name" do
           expected_result = create_list(:contact, 1)
 
@@ -43,8 +43,8 @@ RSpec.describe "Contacts", type: :request do
         end
       end
 
-      describe "when an order config is passed as param to search" do
-        describe "when an order specification is not passed as param to search" do
+      context "when an order config is passed as param to search" do
+        context "when an order specification is not passed as param to search" do
           it "returns all contacts ordered as param" do
             expected_result = create_list(:contact, 5).sort_by(&:name)
 
@@ -55,7 +55,7 @@ RSpec.describe "Contacts", type: :request do
           end
         end
 
-        describe "when an order specification is passed as param to search" do
+        context "when an order specification is passed as param to search" do
           it "returns all contacts ordered as param" do
             expected_result = create_list(:contact, 5).sort_by(&:name).reverse
 
@@ -67,8 +67,8 @@ RSpec.describe "Contacts", type: :request do
         end
       end
 
-      describe "when a pagination config is passed as param to search" do
-        describe "when only page num is passed" do
+      context "when a pagination config is passed as param to search" do
+        context "when only page num is passed" do
           it "returns only one contact per page from second page num as default is one" do
             all_contacts = create_list(:contact, 5)
             expected_result = [all_contacts[1]]
@@ -80,7 +80,7 @@ RSpec.describe "Contacts", type: :request do
           end
         end
 
-        describe "when only per page is passed" do
+        context "when only per page is passed" do
           it "returns two contacts from first page num as default is one" do
             all_contacts = create_list(:contact, 5)
             expected_result = [all_contacts[0], all_contacts[1]]
@@ -92,7 +92,7 @@ RSpec.describe "Contacts", type: :request do
           end
         end
 
-        describe "when both page num and per page is passed" do
+        context "when both page num and per page is passed" do
           it "returns two contacrs per page from the seconde page num" do
             all_contacts = create_list(:contact, 5)
             expected_result = [all_contacts[2], all_contacts[3]]
@@ -105,7 +105,7 @@ RSpec.describe "Contacts", type: :request do
         end
       end
 
-      describe "when ordered and pagination param is passed" do
+      context "when ordered and pagination param is passed" do
         it "return a list of contacts ordered and paginated" do
           all_contacts = create_list(:contact, 5).sort_by(&:name).reverse
           expected_result = [all_contacts[2], all_contacts[3]]
@@ -119,7 +119,7 @@ RSpec.describe "Contacts", type: :request do
     end
   end
 
-  describe "GET /show" do
+  context "GET /show" do
     it "returns http success" do
       expected_result = create(:contact)
 
@@ -130,8 +130,8 @@ RSpec.describe "Contacts", type: :request do
     end
   end
 
-  describe "POST /create" do
-    describe "when all parameters are all right" do
+  context "POST /create" do
+    context "when all parameters are all right" do
       it "returns http success" do
         contact = create(:contact)
 
@@ -145,7 +145,7 @@ RSpec.describe "Contacts", type: :request do
     end
   end
 
-  describe "GET /destroy" do
+  context "GET /destroy" do
     it "returns http success" do
       contact = create(:contact)
       referral = create(:referral, contact_id: contact.id)

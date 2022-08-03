@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ReferralMailer, type: :request do
-  describe "when mailer is called to send an email" do
+  context "when mailer is called to send an email" do
     it "sends an email" do
       referral = create(:referral)
 
