@@ -18,11 +18,7 @@ class ContactController < ApplicationController
 
     contacts = contacts.limit(per_page).offset(paginate_offset) if params[:page_num] || params[:per_page]
 
-    if contacts.any?
-      render json: contacts.to_json
-    else
-      render status: 404
-    end
+    render json: contacts.to_json
   end
 
   def show

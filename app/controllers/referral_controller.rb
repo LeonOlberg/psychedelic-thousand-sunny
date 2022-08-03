@@ -20,11 +20,7 @@ class ReferralController < ApplicationController
 
     referrals.includes(:contact)
 
-    if referrals.any?
-      render json: referrals.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
-    else
-      render status: 404
-    end
+    render json: referrals.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
   end
 
   def show
