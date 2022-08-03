@@ -5,9 +5,8 @@ RSpec.describe ReferralMailer, type: :request do
     it "sends an email" do
       referral = create(:referral)
 
-      ReferralMailer.welcome(referral_id: referral.id, referral_email: referral.email).deliver_now
-
-      expect(ActionMailer::Base.deliveries.length).to eq(1)
+      expect { ReferralMailer.welcome(referral_id: referral.id, referral_email: referral.email).deliver_now }
+        .to change { ActionMailer::Base.deliveries.length }.by(1)
     end
   end
 end
