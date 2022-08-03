@@ -30,7 +30,7 @@ class ReferralController < ApplicationController
   end
 
   def create
-    referral = Referral.create(name: params[:name], email: params[:email], contact_id: params[:contact_id])
+    referral = Referral.create!(name: params[:name], email: params[:email], contact_id: params[:contact_id])
 
     render json: referral.to_json(include: { contact: { only: [:name, :email, :address] } }, except: :contact_id)
   end

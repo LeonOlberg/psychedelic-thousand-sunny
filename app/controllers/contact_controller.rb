@@ -28,7 +28,7 @@ class ContactController < ApplicationController
   end
 
   def create
-    contact = Contact.create(name: params[:name], email: params[:email], address: params[:address])
+    contact = Contact.create!(name: params[:name], email: params[:email], address: params[:address])
 
     render json: contact
   end
